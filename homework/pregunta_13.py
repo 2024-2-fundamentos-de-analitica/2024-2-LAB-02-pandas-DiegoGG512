@@ -4,7 +4,11 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 `tbl2.tsv`. En este laboratorio solo puede utilizar las funciones y 
 librerias de pandas para resolver las preguntas.
 """
-
+import pandas as pd
+archivo = "files/input/tbl0.tsv"
+file = pd.read_csv(archivo, sep='\t')
+archivo2 = "files/input/tbl2.tsv"
+file2 = pd.read_csv(archivo2, sep='\t')
 
 def pregunta_13():
     """
@@ -20,3 +24,7 @@ def pregunta_13():
     E    275
     Name: c5b, dtype: int64
     """
+    resultado = pd.merge(file, file2, on="c0")
+    resultado = resultado.groupby("c1")["c5b"].sum()
+
+    return resultado
